@@ -80,7 +80,9 @@ class Game:
 def main():
 
     name = input("Enter your name: ")
-    print(f"Hello, {name}")
+    print(f"Hello, {name}\nWelcome to Rock Paper Scissors")
+    print("select game type\n-1 simple game (rock, paper, scissors)\n-2 custom game")
+
 
 
     user_score = 0
@@ -94,14 +96,22 @@ def main():
     except FileNotFoundError:
         pass
 
+    options = ["rock", "paper", "scissors"]
+    choice = input().strip()
 
-    raw_options = input().strip()
-    if not raw_options:
-        options = ["rock", "paper", "scissors"]
+
+    if choice == "2":
+        print("Enter options separated by comma (rock,gun,lightning,devil,dragon):")
+        raw_input = input().strip()
+        if raw_input:
+            options = list(map(lambda x: x.strip(), raw_input.split(",")))
+
+    elif choice == "1":
+        print("Standard game selected.")
     else:
-        options = raw_options.split(",")
+        print("Unknown command. Loading standard game by default.")
 
-    print("Okay, let's start")
+    print("Okay, let's start(exit = !exit, rating = !rating)")
 
 
     bot = DynamicBot(options)
